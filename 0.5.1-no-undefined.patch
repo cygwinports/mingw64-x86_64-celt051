@@ -1,0 +1,22 @@
+--- origsrc/celt-0.5.1.3/libcelt/Makefile.am	2009-05-06 11:27:26.000000000 -0500
++++ src/celt-0.5.1.3/libcelt/Makefile.am	2011-11-16 20:22:41.152826600 -0600
+@@ -22,7 +22,7 @@ libcelt@PACKAGE_APPEND@_la_SOURCES = ban
+ 
+ #noinst_HEADERS =
+ 
+-libcelt@PACKAGE_APPEND@_la_LDFLAGS = -version-info @CELT_LT_CURRENT@:@CELT_LT_REVISION@:@CELT_LT_AGE@
++libcelt@PACKAGE_APPEND@_la_LDFLAGS = -version-info @CELT_LT_CURRENT@:@CELT_LT_REVISION@:@CELT_LT_AGE@ -no-undefined
+ 
+ noinst_HEADERS = _kiss_fft_guts.h arch.h bands.h fixed_c5x.h fixed_c6x.h \
+ 	cwrs.h ecintrin.h entcode.h entdec.h entenc.h fixed_generic.h float_cast.h \
+--- origsrc/celt-0.5.1.3/tests/Makefile.am	2009-05-06 15:10:14.000000000 -0500
++++ src/celt-0.5.1.3/tests/Makefile.am	2011-11-16 20:22:18.148510800 -0600
+@@ -1,6 +1,8 @@
+ INCLUDES = -I$(top_srcdir)/libcelt
+ METASOURCES = AUTO
+ 
++LDADD = $(top_builddir)/libcelt/libcelt@PACKAGE_APPEND@.la
++
+ TESTS = type-test ectest cwrs32-test real-fft-test dft-test laplace-test mdct-test mathops-test
+ 
+ noinst_PROGRAMS = type-test ectest cwrs32-test real-fft-test dft-test laplace-test mdct-test mathops-test
